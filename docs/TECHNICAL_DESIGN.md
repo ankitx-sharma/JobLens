@@ -68,7 +68,7 @@ Extract:
 ---
 
 ## 3. Backend Components
-The MVP should use a small monolithic architecture.
+The MVP uses a small monolithic architecture.
 
 ### 3.1 Controller layer
 `JobAnalysisController`
@@ -146,7 +146,7 @@ Responsibilities:
 ---
 
 ## 4. Data Model
-For MVP, use two main tables.
+For MVP, we use two main tables.
 
 ### 4.1 job_analysis_request
 Stores the raw job description submitted by the user.
@@ -183,7 +183,7 @@ job_analysis_request (1) ---- (1) job_analysis_result
 
 ## 5. Endpoints
 
-For MVP, keep the endpoints minimal.
+For MVP,  we have kept the endpoints minimal.
 
 ### 5.1 Page endpoints
 `GET /`
@@ -206,22 +206,6 @@ Request fields:
 
 Response:
 - rendered result page
-
-### 5.2 Optional future API endpoints
-Not required for MVP, but useful if later converting to AJAX/API-based frontend.
-
-`POST /api/analyze`
-
-Purpose:
-- accept job description as JSON
-- return structured JSON result
-
-`GET /analysis/{id}`
-
-Purpose:
-- retrieve a previous analysis by ID
-
-These should not be implemented in V1 unless needed.
 
 ---
 
@@ -263,7 +247,7 @@ Main elements:
 
 ## 7. File Structure
 
-Recommended Spring Boot project structure:
+Project structure:
 ```
 joblens/
 ├── src/
@@ -349,7 +333,7 @@ This object is passed from controller to Thymeleaf template.
 ---
 
 ## 9. AI Response Strategy
-For MVP, the AI prompt should request output in a stable structure.
+For MVP, the AI prompt will request output in a stable structure.
 
 Preferred format:
 - sectioned text with fixed headings
@@ -360,17 +344,14 @@ Example headings:
 - PRODUCT / SYSTEM TYPE
 - TEAM & WORK ENVIRONMENT
 
-This reduces parsing complexity and keeps rendering simple.
-
 Alternative later:
 - JSON structured response
 
-For V1, fixed-section text is simpler.
+For V1, fixed-section text is preferred.
 
 ---
 
 ## 10. Validation Rules
-Input validation should be simple.
 
 **Rules**
 - job description must not be blank
