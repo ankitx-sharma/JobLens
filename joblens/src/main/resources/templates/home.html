@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>JobLens</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div class="container">
+    <header class="page-header">
+        <h1>JobLens</h1>
+        <p>Decode job descriptions in seconds.</p>
+    </header>
 
+    <main class="card">
+        <h2>Paste job description</h2>
+        <p>
+            Paste a full job description and get a structured explanation of the role,
+            industry, system type, and team environment.
+        </p>
+
+        <form th:action="@{/analyze}" th:object="${jobAnalysisForm}" method="post">
+            <label for="jobDescriptionText">Job Description</label>
+            <textarea id="jobDescriptionText"
+                      th:field="*{jobDescriptionText}"
+                      placeholder="Paste the full job description here..."></textarea>
+
+            <div class="error" th:if="${#fields.hasErrors('jobDescriptionText')}"
+                 th:errors="*{jobDescriptionText}">
+            </div>
+
+            <button type="submit">Analyze Job Description</button>
+        </form>
+    </main>
+</div>
 </body>
 </html>

@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>JobLens - Result</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div class="container">
+    <header class="page-header">
+        <h1>JobLens</h1>
+        <a class="link-button" th:href="@{/}">Analyze Another Job Description</a>
+    </header>
 
+    <main>
+        <section class="card">
+            <h2>Job Description Analysis</h2>
+            <p>Here is a structured interpretation of the submitted role.</p>
+        </section>
+
+        <section class="card">
+            <h3>Submitted Job Description</h3>
+            <p th:text="${result.jobDescriptionPreview}"></p>
+        </section>
+
+        <section class="card">
+            <h3>Role Interpretation</h3>
+            <pre th:text="${result.roleInterpretation}"></pre>
+        </section>
+
+        <section class="card">
+            <h3>Industry / Domain</h3>
+            <pre th:text="${result.industryDomain}"></pre>
+        </section>
+
+        <section class="card">
+            <h3>Product / System Architecture</h3>
+            <pre th:text="${result.productSystemType}"></pre>
+        </section>
+
+        <section class="card">
+            <h3>Team &amp; Work Environment</h3>
+            <pre th:text="${result.teamEnvironment}"></pre>
+        </section>
+    </main>
+</div>
 </body>
 </html>
