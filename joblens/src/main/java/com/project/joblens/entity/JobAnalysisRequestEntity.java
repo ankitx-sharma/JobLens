@@ -23,7 +23,7 @@ public class JobAnalysisRequestEntity {
 	private String jobDescriptionText;
 	
 	@Column(name = "created_at", nullable = false)
-	private LocalDateTime createdAt;
+	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private JobAnalysisResultEntity result;

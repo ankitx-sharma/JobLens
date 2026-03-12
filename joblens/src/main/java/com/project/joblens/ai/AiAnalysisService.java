@@ -1,8 +1,5 @@
 package com.project.joblens.ai;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class AiAnalysisService {
-
+public interface AiAnalysisService {
+	String analyzeJobDescription(String prompt);
 }

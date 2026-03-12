@@ -1,25 +1,34 @@
 package com.project.joblens.dto;
 
 public class JobAnalysisView {
-	private String id;
-	private String jobDescriptionText;
+	private Long requestId;
+	private Long resultId;
+	
+	private String jobDescriptionPreview;
 	private String roleInterpretation;
 	private String industryDomain;
 	private String productSystemType;
 	private String teamEnvironment;
 	
-	public String getId() {
-		return id;
+	public Long getRequestId() {
+		return requestId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
 	}
 	
-	public String getJobDescriptionText() {
-		return jobDescriptionText;
+	public Long getResultId() {
+		return resultId;
 	}
-	public void setJobDescriptionText(String jobDescriptionText) {
-		this.jobDescriptionText = jobDescriptionText;
+	public void setResultId(Long resultId) {
+		this.resultId = resultId;
+	}
+	
+	public String getJobDescriptionPreview() {
+		return jobDescriptionPreview;
+	}
+	public void setJobDescriptionPreview(String jobDescriptionPreview) {
+		this.jobDescriptionPreview = jobDescriptionPreview;
 	}
 	
 	public String getRoleInterpretation() {
