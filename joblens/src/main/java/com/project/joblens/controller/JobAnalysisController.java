@@ -34,9 +34,19 @@ public class JobAnalysisController {
 			return "home";
 		}
 		
+//		String jobDescription = form.getJobDescriptionText().trim();
+//		
+//		model.addAttribute("jobDescriptionText", jobDescription);
+//		model.addAttribute("jobDescriptionPreview", 
+//				jobDescription.length() > 300 ? jobDescription.substring(0, 300) + "..." : jobDescription);
 		JobAnalysisView result = service.analyze(form);
 		model.addAttribute("result", result);
 		
 		return "result";
 	}
+	
+//	@GetMapping("/stream-analysis")
+//	public SseEmitter streamAnalysis(@RequestParam("jobDescription") String jobDescription) {
+//		return aiService.streamAnalysis(jobDescription);
+//	}
 }
