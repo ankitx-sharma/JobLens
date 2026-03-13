@@ -12,37 +12,71 @@
         <a class="link-button" th:href="@{/}">Analyze Another Job Description</a>
     </header>
 
-    <main>
-        <section class="card">
-            <h2>Job Description Analysis</h2>
-            <p>Here is a structured interpretation of the submitted role.</p>
-        </section>
+    <section class="card">
+        <h2>Job Description Analysis</h2>
+        <p>Here is a more strategic interpretation of the submitted role.</p>
+    </section>
 
-        <section class="card">
-            <h3>Submitted Job Description</h3>
-            <p th:text="${result.jobDescriptionPreview}"></p>
-        </section>
+    <section class="card">
+        <h3>Submitted Job Description</h3>
+        <p th:text="${result.jobDescriptionPreview}"></p>
+    </section>
 
-        <section class="card">
-            <h3>Role Interpretation</h3>
-            <pre th:text="${result.roleInterpretation}"></pre>
-        </section>
+    <section class="card">
+        <h3>1. What They’re Actually Hiring</h3>
+        <p><strong>Headline:</strong></p>
+        <p th:text="${result.actualRole.headline}"></p>
 
-        <section class="card">
-            <h3>Industry / Domain</h3>
-            <pre th:text="${result.industryDomain}"></pre>
-        </section>
+        <p><strong>Explanation:</strong></p>
+        <p th:text="${result.actualRole.explanation}"></p>
+    </section>
 
-        <section class="card">
-            <h3>Product / System Architecture</h3>
-            <pre th:text="${result.productSystemType}"></pre>
-        </section>
+    <section class="card">
+        <h3>2. Dominant Themes in the Job Description</h3>
 
-        <section class="card">
-            <h3>Team &amp; Work Environment</h3>
-            <pre th:text="${result.teamEnvironment}"></pre>
-        </section>
-    </main>
+        <div th:if="${#lists.isEmpty(result.dominantThemes)}">
+            <p>No dominant themes detected.</p>
+        </div>
+
+        <div th:each="theme, stat : ${result.dominantThemes}" class="theme-block">
+            <h4>
+                <span th:text="${stat.count}"></span>.
+                <span th:text="${theme.themeTitle}"></span>
+            </h4>
+
+            <p><strong>Keywords / Signals:</strong></p>
+            <ul>
+                <li th:each="keyword : ${theme.keywords}" th:text="${keyword}"></li>
+            </ul>
+
+            <p><strong>What this means:</strong></p>
+            <p th:text="${theme.meaning}"></p>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3>3. Strategic Interpretation</h3>
+
+        <p><strong>What the company likely values:</strong></p>
+        <ul>
+            <li th:each="item : ${result.strategicInterpretation.whatCompanyLikelyValues}" th:text="${item}"></li>
+        </ul>
+
+        <p><strong>What this usually means for candidates:</strong></p>
+        <p th:text="${result.strategicInterpretation.whatThisUsuallyMeansForCandidates}"></p>
+    </section>
+
+    <section class="card">
+        <h3>4. How a Candidate Should Position Themselves</h3>
+
+        <p><strong>What to emphasize:</strong></p>
+        <ul>
+            <li th:each="item : ${result.positioningAdvice.whatToEmphasize}" th:text="${item}"></li>
+        </ul>
+
+        <p><strong>How to think about missing skills:</strong></p>
+        <p th:text="${result.positioningAdvice.howToThinkAboutMissingSkills}"></p>
+    </section>
 </div>
 </body>
 </html>
