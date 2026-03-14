@@ -1,4 +1,4 @@
-package com.project.joblens.service;
+package com.project.joblens.ai.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.project.joblens.service;
+package com.project.joblens.ai.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.joblens.ai.AiAnalysisService;
+import com.project.joblens.ai.prompt.PromptBuilderService;
+import com.project.joblens.ai.prompt.PromptVersion;
+import com.project.joblens.ai.provider.AiModelClientService;
 import com.project.joblens.dto.DominantThemeDto;
 import com.project.joblens.dto.JobAnalysisForm;
 import com.project.joblens.dto.JobAnalysisView;
@@ -31,10 +33,10 @@ public class JobAnalysisService {
 	private PromptBuilderService promptBuilder;
 	
 	@Autowired
-	private AiAnalysisService aiService;
+	private ObjectMapper objectMapper;
 	
 	@Autowired
-	private ObjectMapper objectMapper;
+	private AiModelClientService aiService;
 	
 	@Transactional
 	public JobAnalysisView analyze(JobAnalysisForm form) {
@@ -45,11 +47,11 @@ public class JobAnalysisService {
 		
 		requestEntity = requestRepository.save(requestEntity);
 		
-		String prompt = promptBuilder.buildStructuredJsonPrompt(jobDescriptionPreview);
+		String prompt = promptBuilder.buildStructuredJsonPrompt(jobDescriptionPreview, PromptVersion.V1);
 		String rawAiResponse = aiService.analyzeJobDescription(prompt);
 		
-//		System.out.println("RAW AI RESPONSE:");
-//		System.out.println(rawAiResponse);
+		System.out.println("RAW AI RESPONSE:");
+		System.out.println(rawAiResponse);
 		
 		StructuredJobAnalysisDto parsed;
 		
@@ -106,7 +108,8 @@ public class JobAnalysisService {
             return "";
         }
         return "Headline: " + nullSafe(parsed.getActualRole().getHeadline())
-                + "\nExplanation: " + nullSafe(parsed.getActualRole().getExplanation());
+                + "\nExplanation: " + nullSafe(parsed.getActualRole().getExplanation())
+                + "\nCandidate relevance hint: " + nullSafe(parsed.getActualRole().getCandidateRelevanceHint());
     }
 	
 	private String toThemesText(List<DominantThemeDto> themes) {
