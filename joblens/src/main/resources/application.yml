@@ -15,10 +15,35 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+
   ai:
+    chat:
+      client:
+        enabled: false
+
     ollama:
       base-url: http://localhost:11434
       chat:
         options:
           model: llama3.1
           temperature: 0.2
+
+    mistralai:
+      api-key: ${MISTRALAI_API_KEY}
+      chat:
+        options:
+          model: mistral-large-latest
+          temperature: 0.3
+          max-tokens: 2000
+
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4.1
+          temperature: 0.2
+          max-tokens: 2000
