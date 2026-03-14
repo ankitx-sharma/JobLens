@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.project.joblens.ai.service.JobAnalysisService;
 import com.project.joblens.dto.JobAnalysisForm;
 import com.project.joblens.dto.JobAnalysisView;
-import com.project.joblens.service.JobAnalysisService;
 
 import jakarta.validation.Valid;
 
