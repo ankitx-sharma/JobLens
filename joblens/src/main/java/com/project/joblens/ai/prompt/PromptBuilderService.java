@@ -25,35 +25,35 @@ public class PromptBuilderService {
 	
 	private PromptsEntity getDefaultVersion() {
 		String prompt = """
-				Return ONLY a valid JSON object.
-				No markdown.
-				No code fences.
-				No explanation outside JSON.
+				Return ONLY newline-delimited JSON.
+	            Do not return markdown.
+	            Do not return code fences.
+	            Do not return one large JSON object.
+	            Return one valid JSON object per line.
 				
-				Use exactly this JSON structure:
-				
-				{
-				  "actualRole": {
-				    "headline": "string",
-				    "explanation": "string",
-				    "candidateRelevanceHint": "string"
-				  },
-				  "dominantThemes": [
-				    {
-				      "themeTitle": "string",
-				      "keywords": ["string"],
-				      "meaning": "string"
-				    }
-				  ],
-				  "strategicInterpretation": {
-				    "whatCompanyLikelyValues": ["string"],
-				    "whatThisUsuallyMeansForCandidates": "string"
-				  },
-				  "positioningAdvice": {
-				    "whatToEmphasize": ["string"],
-				    "howToThinkAboutMissingSkills": "string"
-				  }
-				}
+				Output exactly in this order:
+
+	            1. actualRole
+	            2. dominantTheme (for each theme, one line per theme)
+	            3. strategicInterpretation
+	            4. positioningAdvice
+	
+	            Use these exact shapes:
+	
+	            {"type":"actualRole","data":{"headline":"string","explanation":"string","candidateRelevanceHint":"string"}}
+	
+	            {"type":"dominantTheme","index":0,"data":{"themeTitle":"string","keywords":["string"],"meaning":"string"}}
+	
+	            {"type":"strategicInterpretation","data":{"whatCompanyLikelyValues":["string"],"whatThisUsuallyMeansForCandidates":"string"}}
+	
+	            {"type":"positioningAdvice","data":{"whatToEmphasize":["string"],"howToThinkAboutMissingSkills":"string"}}
+
+				Rules:
+	            - each line must be a complete valid JSON object
+	            - do not split a JSON object across multiple lines intentionally
+	            - do not include commentary outside JSON
+	            - keep the order fixed
+	            - identify 3 to 5 dominant themes
 				
 				Instructions:
 				- Analyze the job description like an experienced career strategist for software engineers.
