@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JobLens</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>JobLens</h1>
+            <p>Decode job descriptions in seconds.</p>
+        </div>
+    </header>
+
+    <main class="card">
+        <h2>Paste job description</h2>
+        <p>
+            Paste a full job description and get a structured explanation of the role,
+            industry, system type, and team environment.
+        </p>
+
+        <form th:action="@{/analyze}" th:object="${jobAnalysisForm}" method="post" id="analysisForm">
+            <label for="jobDescriptionText">Job Description</label>
+            <textarea id="jobDescriptionText"
+                      th:field="*{jobDescriptionText}"
+                      placeholder="Paste the full job description here..."></textarea>
+
+            <div class="error"
+                 th:if="${#fields.hasErrors('jobDescriptionText')}"
+                 th:errors="*{jobDescriptionText}">
+            </div>
+
+            <button type="submit" id="analyzeButton">Analyze Job Description</button>
+
+            <div id="loadingState" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p id="loadingText">Analyzing job description...</p>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script>
+    const form = document.getElementById('analysisForm');
+    const button = document.getElementById('analyzeButton');
+    const loadingState = document.getElementById('loadingState');
+    const loadingText = document.getElementById('loadingText');
+
+    form.addEventListener('submit', function () {
+        button.disabled = true;
+        button.textContent = 'Analyzing...';
+        loadingState.classList.remove('hidden');
+
+        const messages = [
+            'Reading job description...',
+            'Identifying role and domain...',
+            'Analyzing product and system context...',
+            'Preparing final result...'
+        ];
+
+        let index = 0;
+        const interval = setInterval(() => {
+            if (index < messages.length) {
+                loadingText.textContent = messages[index];
+                index++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1800);
+    });
+</script>
+</body>
+</html>

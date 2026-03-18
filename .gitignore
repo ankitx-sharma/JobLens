@@ -3,6 +3,10 @@ joblens/.metadata/
 joblens/.gitattributes
 joblens/.mvn/
 
+backend/.metadata/
+backend/.gitattributes
+backend/.mvn/
+
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar

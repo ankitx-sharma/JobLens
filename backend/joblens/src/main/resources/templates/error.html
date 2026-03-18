@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JobLens - Error</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <section class="card">
+        <h1>Something went wrong</h1>
+        <p th:text="${errorMessage}"></p>
+        <a class="link-button" th:href="@{/}">Back to Home</a>
+    </section>
+</div>
+</body>
+</html>
