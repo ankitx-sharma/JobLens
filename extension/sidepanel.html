@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>JobLens</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>JobLens</h1>
+            <p>Analyze the current job description</p>
+        </header>
+
+        <section class="card">
+            <button id="analyzeBtn">Analyze Job Description</button>
+            <p id="statusText">Waiting for job description... </p>
+            <p id="statusDetail">Sections will appear as they become ready.</p>
+        </section>
+
+        <section class="card">
+            <h2>1. What They're Looking For</h2>
+            <p><strong>Headline:</strong></p>
+            <p id="actualRoleHeadline"></p>
+
+            <p><strong>Explanation:</strong></p>
+            <p id="actualRoleExplanation"></p>
+
+            <p><strong>Candidate relevance hint:</strong></p>
+            <p id="actualRoleHint"></p>
+        </section>
+
+        <section class="card">
+            <h2>2. Dominant Themes</h2>
+            <div id="dominantThemesContainer">
+                <p id="dominantThemesPlaceholder">Waiting for dominant themes...</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Strategic Interpretation</h2>
+            <p><strong>What the company likely values:</strong></p>
+            <ul id="strategicValues"></ul>
+
+            <p><strong>What this usually means for candidates:</strong></p>
+            <p id="strategicMeaning"></p>
+        </section>
+
+        <section class="card">
+            <h2>4. Tailoring Your Application</h2>
+            <p><strong>Key points to highlight in your resume and cover letter:</strong></p>
+            <ul id="positioningEmphasis"></ul>
+
+            <p><strong>How to think about missing skills:</strong></p>
+            <p id="positioningMissingSkills"></p>
+        </section>
+    </div>
+
+    <script src="sidepanel.js"></script>
+</body>
+</html>

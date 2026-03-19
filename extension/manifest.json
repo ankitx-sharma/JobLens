@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "JobLens",
+    "version": "0.1.0",
+    "description": "Analyze job descriptions directly from job pages.",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "sidePanel"
+    ],
+    "host_permissions": [
+        "https://www.linkedin.com/jobs/*",
+        "http://localhost:8080/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html"
+    },
+    "action": {
+        "default_title": "JobLens"
+    }
+}
