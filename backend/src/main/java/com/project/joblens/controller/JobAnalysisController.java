@@ -1,8 +1,8 @@
 package com.project.joblens.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import com.project.joblens.ai.service.JobAnalysisService;
 import com.project.joblens.ai.service.JobAnalysisStreamingService;
 import com.project.joblens.dto.JobAnalysisForm;
-import com.project.joblens.dto.JobAnalysisView;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class JobAnalysisController {
-
-	@Autowired
-	private JobAnalysisService extensionService;
 	
 	@Autowired
 	private JobAnalysisStreamingService streamingService;
@@ -56,9 +51,9 @@ public class JobAnalysisController {
 		return streamingService.streamAnalysis(jobDescriptionText);
 	}
 	
-	@PostMapping(path = "/analyze/extension", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/analyze/extension", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	@ResponseBody
-	public JobAnalysisView analyzeForExtension(@Valid @ModelAttribute("jobAnalysisForm") JobAnalysisForm form) {
-		return extensionService.analyze(form);
+	public SseEmitter analyzeForExtension(@Valid @ModelAttribute("jobAnalysisForm") JobAnalysisForm form) {
+		return streamingService.streamAnalysis(form.getJobDescriptionText());
 	}
 }
