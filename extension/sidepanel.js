@@ -99,6 +99,8 @@ async function extractJobDescriptionFromActiveTab() {
         for(const heading of headings) {
           const text = heading.innerText?.trim().toLowerCase();
           
+          if(text === "about the job") {
+          }
         }
       }
     }
