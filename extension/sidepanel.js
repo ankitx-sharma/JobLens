@@ -60,7 +60,7 @@ async function getActiveTab() {
 }
 
 function extractJobDescriptionByHeading() {
-  
+  const headings = Array.from(document.querySelectorAll("h1, h2, h3"));
 }
 
 async function extractJobDescriptionFromActiveTab() {
