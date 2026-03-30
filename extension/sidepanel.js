@@ -69,6 +69,7 @@ function extractJobDescriptionByHeading() {
       let container = heading.parentElement;
       
       while(container) {
+        const content = container.innerText?.trim();
       }
     }
   }
