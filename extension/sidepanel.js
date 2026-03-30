@@ -146,8 +146,14 @@ async function extractJobDescriptionFromActiveTab() {
           if (element) {
             return element.innerText.trim();
           }
+
+          const byHeading = extractJobDescriptionByHeading();
+          if (byHeading) {
+            return byHeading.trim();
+          }
           await new Promise(resolve => setTimeout(resolve, delayMs));
         }
+        
         return "";
       }
 
