@@ -67,6 +67,9 @@ function extractJobDescriptionByHeading() {
 
     if(text === "about the job") {
       let container = heading.parentElement;
+      
+      while(container) {
+      }
     }
   }
 }
