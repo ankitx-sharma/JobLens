@@ -13,3 +13,12 @@ The JobLens Chrome Extension allows users to analyze job descriptions directly f
 
 ---
 
+# Architecture
+
+## Components
+Chrome Extension
+│
+├── background.js → Controls side panel behavior
+├── sidepanel.html → UI container
+├── sidepanel.js → Main logic (extraction + API + rendering)
+└── manifest.json → Extension configuration
