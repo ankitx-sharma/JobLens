@@ -70,6 +70,12 @@ function extractJobDescriptionByHeading() {
       
       while(container) {
         const content = container.innerText?.trim();
+
+        if(content && 
+           content.length > 500 &&
+           content.length < 10000) {
+
+        }
       }
     }
   }
