@@ -22,3 +22,6 @@ Chrome Extension
 ├── sidepanel.html → UI container  
 ├── sidepanel.js → Main logic (extraction + API + rendering)  
 └── manifest.json → Extension configuration  
+
+---
+
