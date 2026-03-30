@@ -25,3 +25,25 @@ Chrome Extension
 
 ---
 
+# Execution Flow
+
+## 1. User Interaction
+
+1. User opens a job description page (e.g., LinkedIn)
+2. User clicks extension icon
+3. Side panel opens
+4. User clicks **"Analyze Job"**
+
+---
+
+## 2. Job Description Extraction
+
+Extraction happens **inside the active tab context** using:
+
+```js
+chrome.scripting.executeScript(...)
+```
+
+**Why?**
+- Side panel cannot access page DOM
+- Must execute code inside the page itself
