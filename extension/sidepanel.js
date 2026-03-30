@@ -100,7 +100,12 @@ async function extractJobDescriptionFromActiveTab() {
           const text = heading.innerText?.trim().toLowerCase();
           
           if(text === "about the job") {
-          }
+            let container = heading.parentElement;
+            
+            while(container) {
+              const content = container.innerText?.trim();
+            }
+
         }
       }
     }
