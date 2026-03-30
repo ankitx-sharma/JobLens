@@ -94,6 +94,7 @@ async function extractJobDescriptionFromActiveTab() {
     target: { tabId: tab.id, allFrames: true },
     func: async () => {
       function extractJobDescriptionByHeading() {
+        const headings = Array.from(document.querySelectorAll("h1, h2, h3"));
       }
     }
 
