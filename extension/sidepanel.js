@@ -63,6 +63,7 @@ function extractJobDescriptionByHeading() {
   const headings = Array.from(document.querySelectorAll("h1, h2, h3"));
 
   for(const heading of headings) {
+    const text = heading.innerText?.trim().toLowerCase();
   }
 }
 
