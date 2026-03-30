@@ -99,7 +99,7 @@ async function extractJobDescriptionFromActiveTab() {
         for(const heading of headings) {
           const text = heading.innerText?.trim().toLowerCase();
           
-          if(text === "about the job") {
+          if(text && text.includes("about the job")) {
             let container = heading.parentElement;
             
             while(container) {
@@ -153,7 +153,7 @@ async function extractJobDescriptionFromActiveTab() {
           }
           await new Promise(resolve => setTimeout(resolve, delayMs));
         }
-        
+
         return "";
       }
 
