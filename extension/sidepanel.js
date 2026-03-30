@@ -93,14 +93,18 @@ async function extractJobDescriptionFromActiveTab() {
   const results = await chrome.scripting.executeScript({
     target: { tabId: tab.id, allFrames: true },
     func: async () => {
+      function extractJobDescriptionByHeading() {
+      }
+    }
+
+    func: async () => {
       function getJobDescriptionElement() {
         const selectors = [
           "#job-details",
           ".jobs-description__content",
           ".jobs-box__html-content",
           ".jobs-description-content__text",
-          "[class*='jobs-description']",
-          "._3ac4ffe8 _866f6ddf _010d8dd9 c3ae5a02 _7e50ab4c _9572431e _56fd9a8a _5b84d043 _66379f73 _2f31586a _32c49d76"
+          "[class*='jobs-description']"
         ];
 
         for (const selector of selectors) {
