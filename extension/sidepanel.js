@@ -74,8 +74,10 @@ function extractJobDescriptionByHeading() {
         if(content && 
            content.length > 500 &&
            content.length < 10000) {
-
+            return content;
         }
+
+        container = container.parentElement;
       }
     }
   }
