@@ -110,13 +110,14 @@ async function extractJobDescriptionFromActiveTab() {
                  content.length < 10000) {
                   return content;
               }
+
+              container = container.parentElement;
             }
           }
         }
+        return "";
       }
-    }
 
-    func: async () => {
       function getJobDescriptionElement() {
         const selectors = [
           "#job-details",
