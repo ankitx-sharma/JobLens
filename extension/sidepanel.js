@@ -59,6 +59,10 @@ async function getActiveTab() {
   return tabs[0];
 }
 
+function extractJobDescriptionByHeading() {
+  
+}
+
 async function extractJobDescriptionFromActiveTab() {
   const tab = await getActiveTab();
 
@@ -75,7 +79,8 @@ async function extractJobDescriptionFromActiveTab() {
           ".jobs-description__content",
           ".jobs-box__html-content",
           ".jobs-description-content__text",
-          "[class*='jobs-description']"
+          "[class*='jobs-description']",
+          "._3ac4ffe8 _866f6ddf _010d8dd9 c3ae5a02 _7e50ab4c _9572431e _56fd9a8a _5b84d043 _66379f73 _2f31586a _32c49d76"
         ];
 
         for (const selector of selectors) {
