@@ -61,3 +61,8 @@ We use a multi-layer fallback approach:
 
 ### Priority 2: Semantic Extraction (Stable)
 
+Uses heading:
+```
+"About the job"
+```
+
