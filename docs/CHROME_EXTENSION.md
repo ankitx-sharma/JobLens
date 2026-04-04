@@ -47,3 +47,8 @@ chrome.scripting.executeScript(...)
 **Why?**
 - Side panel cannot access page DOM
 - Must execute code inside the page itself
+
+## 3. Extraction Strategy
+
+We use a multi-layer fallback approach:
+
