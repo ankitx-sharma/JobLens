@@ -88,7 +88,7 @@ Because LinkedIn is a SPA (Single Page App):
 - Content loads asynchronously
 - DOM is not ready immediately
 
-**Solution:**
+Solution:
 ```js
 for (attempt = 1 → N) {
   try extraction
@@ -98,7 +98,12 @@ for (attempt = 1 → N) {
 
 ### 4. Backend Communication
 
-**After extraction:**
+After extraction:
 ```js
 POST /analyze/extension
+```
+
+Request:
+```x-www-form-urlencoded
+jobDescriptionText=...
 ```
