@@ -114,3 +114,13 @@ Backend returns:
 ```
 text/event-stream
 ```
+
+**Events:**
+| Event Name                | Description           |
+| ------------------------- | --------------------- |
+| `actualRole`              | Role interpretation   |
+| `dominantTheme`           | Key themes (multiple) |
+| `strategicInterpretation` | Company expectations  |
+| `positioningAdvice`       | Resume guidance       |
+| `done`                    | Stream finished       |
+| `error`                   | Failure case          |
