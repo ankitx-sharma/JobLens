@@ -139,3 +139,12 @@ if (eventName === "dominantTheme") {
 - Section-wise rendering
 - No full-page reload
 - Real-time feedback
+
+### Key Design Decisions
+
+#### 1. No content.js
+
+Instead of using content.js, we use:
+```js
+chrome.scripting.executeScript()
+```
