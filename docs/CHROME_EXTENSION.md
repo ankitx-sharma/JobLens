@@ -67,7 +67,7 @@ Uses heading:
 ```
 
 **Logic:**
-Find heading (h1, h2, h3)
-Match text → "about the job"
-Traverse parent containers
-Select container with meaningful content
+- Find heading (h1, h2, h3)
+- Match text → "about the job"
+- Traverse parent containers
+- Select container with meaningful content
