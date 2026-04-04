@@ -87,3 +87,11 @@ if (text.includes("about the job")) {
 Because LinkedIn is a SPA (Single Page App):
 - Content loads asynchronously
 - DOM is not ready immediately
+
+**Solution:**
+```js
+for (attempt = 1 → N) {
+  try extraction
+  wait (500ms)
+}
+```
