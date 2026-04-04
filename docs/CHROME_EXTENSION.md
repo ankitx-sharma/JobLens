@@ -71,3 +71,13 @@ Uses heading:
 - Match text → "about the job"
 - Traverse parent containers
 - Select container with meaningful content
+
+```js
+if (text.includes("about the job")) {
+  let container = heading.parentElement;
+  while (container) {
+    if (content.length > 500) return content;
+    container = container.parentElement;
+  }
+}
+```
