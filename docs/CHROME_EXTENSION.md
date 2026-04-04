@@ -81,3 +81,8 @@ if (text.includes("about the job")) {
   }
 }
 ```
+
+### Priority 3: Retry Mechanism
+
+Because LinkedIn is a SPA (Single Page App):
+
