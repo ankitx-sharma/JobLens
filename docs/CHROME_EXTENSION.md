@@ -59,3 +59,5 @@ We use a multi-layer fallback approach:
 .jobs-description__content
 ```
 
+### Priority 2: Semantic Extraction (Stable)
+
