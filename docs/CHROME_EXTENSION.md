@@ -124,3 +124,12 @@ text/event-stream
 | `positioningAdvice`       | Resume guidance       |
 | `done`                    | Stream finished       |
 | `error`                   | Failure case          |
+
+### 6. Frontend Rendering
+
+Each SSE event is handled and rendered dynamically:
+```
+if (eventName === "dominantTheme") {
+  renderDominantTheme(payload.index, payload.data);
+}
+```
