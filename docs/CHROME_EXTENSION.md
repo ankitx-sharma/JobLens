@@ -133,3 +133,9 @@ if (eventName === "dominantTheme") {
   renderDominantTheme(payload.index, payload.data);
 }
 ```
+
+**Rendering Features**
+- Incremental UI updates
+- Section-wise rendering
+- No full-page reload
+- Real-time feedback
