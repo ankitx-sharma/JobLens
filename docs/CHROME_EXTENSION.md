@@ -98,4 +98,7 @@ for (attempt = 1 → N) {
 
 ### 4. Backend Communication
 
-After extraction:
+**After extraction:**
+```js
+POST /analyze/extension
+```
