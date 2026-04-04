@@ -95,3 +95,7 @@ for (attempt = 1 → N) {
   wait (500ms)
 }
 ```
+
+### 4. Backend Communication
+
+After extraction:
