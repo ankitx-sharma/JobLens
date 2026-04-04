@@ -107,3 +107,10 @@ Request:
 ```x-www-form-urlencoded
 jobDescriptionText=...
 ```
+
+### 5. Streaming Response (SSE)
+
+Backend returns:
+```
+text/event-stream
+```
