@@ -52,3 +52,10 @@ chrome.scripting.executeScript(...)
 
 We use a multi-layer fallback approach:
 
+### Priority 1: Direct Selectors (Fast & Accurate)
+```js
+#job-details
+.jobs-box__html-content
+.jobs-description__content
+```
+
