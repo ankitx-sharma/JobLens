@@ -1,281 +1,172 @@
 # JobLens
-JobLens is a self-hosted tool that helps users analyze job descriptions and compare them against their profile or resume.
 
-Instead of reading long and often vague job descriptions, users can paste the text and receive a structured interpretation of the role, including the engineering focus, industry domain, system architecture, and team environment.
+JobLens is a **self-hosted tool** that helps users analyze job descriptions and compare them against their profile or resume.
 
-This repository is public for personal use, learning, and local experimentation.
-It is not currently offered as a hosted product or packaged Chrome Web Store release.
+It is designed for **local use**, giving you full control over your data while leveraging local AI models.
+
+---
+
+## Overview
+
+JobLens helps you:
+
+* Extract key requirements from job descriptions
+* Compare job postings with your profile or resume
+* Identify skill gaps
+* Generate structured insights for better job targeting
+
+---
+
+## Project Scope
+
+This repository contains:
+
+* **Backend** (Spring Boot)
+* **Web App**
+* **Chrome Extension**
+
+The system is designed to run **locally**, with the Chrome extension interacting with a locally running backend.
+
+---
 
 ## Status
-Feature-complete personal project.
-The repository includes:
-- Web app
-- Local backend
-- Chrome extension
 
-## How to use
+**Feature-complete personal project**
 
-JobLens runs locally.
-
-To use it, you need:
-- the backend running locally
-- PostgreSQL running locally
-- Ollama running locally
-- the Chrome extension loaded manually in Chrome
-
-## Problem
-Job descriptions are often:
-- long
-- vague
-- marketing-heavy
-- difficult to interpret quickly
-
-For software engineering roles, it is often unclear:
-- what type of engineer they are hiring
-- what system or product the team is building
-- what industry domain the company operates in
-- what the engineering environment looks like
-
-Candidates frequently read an entire job description and still struggle to answer:
-> "What is this role actually about?"
-JobLens solves this by interpreting job descriptions and presenting structured insights.
+* Fully functional for local usage
+* Public for **personal use, learning, and experimentation**
+* Not deployed as a hosted service
+* Not published on the Chrome Web Store
 
 ---
 
-## Target Users
-Primary users:
-- Software engineers
-- Developers actively applying for jobs
-- Technical professionals reviewing multiple job postings
+## How It Works
 
-User characteristics:
-- reviewing many job descriptions daily
-- trying to understand whether a role fits their experience
-- wants quick insights instead of reading large blocks of text
-
-## Example scenarios:
-### Scenario 1
-A developer opens a LinkedIn job posting and wants to quickly understand:
-- what type of role this is
-- whether it fits their experience
-
-### Scenario 2
-A candidate comparing multiple job descriptions wants to quickly identify:
-- industry
-- system architecture
-- engineering expectations
+1. You open a job posting (e.g., on LinkedIn)
+2. The Chrome extension extracts job data
+3. The data is sent to the local backend
+4. The backend processes it using a local AI model (via Ollama)
+5. Results are returned and displayed to you
 
 ---
 
-## Product Goal
-The goal of JobLens is simple:
-> Paste a job description and instantly understand what the role actually requires.
+## Architecture
 
-The product focuses on interpretation, not ATS optimization or resume rewriting.
-
-
-### MVP Scope (Version 1)
-The first version of JobLens focuses only on job description analysis.
-Users paste a job description and receive structured insights in four sections.
-
-#### Features included in V1
-- paste job description text
-- analyze job description
-- generate structured insights
-
-#### Output sections
-1. Role Interpretation
-2. Industry / Domain
-3. Product / System Architecture
-4. Team & Work Environment
-
-### Out of Scope (V1)
-To keep the first version simple and focused, the following features are not included:
-
-- resume upload
-- resume tailoring
-- ATS keyword analysis
-- cover letter generation
-- job tracking
-- user accounts
-- saving history
-- browser extension
-
-These features may be considered in future versions.
+* **Backend:** Java (Spring Boot)
+* **Database:** PostgreSQL
+* **AI Runtime:** Ollama (local LLM)
+* **Frontend:** Web UI + Chrome Extension
 
 ---
 
-## User Flow
-The application is intentionally simple.
+## Quick Start (Local Setup)
 
-### Step 1
-User opens the application homepage.
+### Prerequisites
 
-### Step 2
-User pastes a job description into a text input field.
+Make sure you have installed:
 
-#### Example input:
-
-```
-Python Software Developer
-Industry: FinTech / Digital Assets / Crypto
-
-Are you looking for a fast-paced, innovative environment...
-```
-
-### Step 3
-User clicks Analyze Job Description.
-
-### Step 4
-The backend analyzes the job description.
-
-### Step 5
-The application displays structured insights.
+* Java 21
+* PostgreSQL
+* Ollama → https://ollama.com
+* Node.js (if frontend requires it)
+* Google Chrome
 
 ---
 
-## Output Structure
-Each analysis returns four structured sections.
-The format is consistent for every job description.
+### High-Level Setup
 
-### 1. Role Interpretation
-Explains **what type of role the company is hiring for**.
-Information extracted:
+1. **Start PostgreSQL**
 
-- role type
-- seniority level
-- primary technologies
-- engineering focus
+   * Create a database (e.g., `joblens`)
+   * Update credentials if needed
 
-Example output:
-```
-ROLE INTERPRETATION
+2. **Start Ollama**
 
-Role: Backend Java Developer
+   ```bash
+   ollama pull llama3
+   ollama serve
+   ```
 
-Seniority: Mid–Senior level
+3. **Run the Backend**
 
-Primary technologies:
-• Java
-• Spring Boot
-• REST APIs
+   ```bash
+   cd backend
+   ./mvnw spring-boot:run
+   ```
 
-Engineering focus:
-• backend service development
-• scalable API design
-• microservice architecture
-```
+4. **Load Chrome Extension**
 
-### 2. Industry / Domain
-Identifies the industry context of the role.
-Information extracted:
+   * Open Chrome → `chrome://extensions/`
+   * Enable **Developer Mode**
+   * Click **Load unpacked**
+   * Select the `extension/` folder
 
-- industry
-- domain signals
-- implications
+5. **Use the App**
 
-Example output:
-```
-INDUSTRY / DOMAIN
-
-Domain: Financial Technology
-
-Signals detected:
-• digital assets
-• trading platform
-• financial markets
-
-Implications:
-Experience in regulated systems or financial data processing may be valuable.
-```
-
-### 3. Product / System Architecture
-Explains what type of system or product the team is building.
-Information extracted:
-
-- architecture style
-- system type
-- technology signals
-- system characteristics
-
-Example output:
-```
-PRODUCT / SYSTEM TYPE
-
-Architecture signals:
-• microservices
-• event-driven systems
-
-Technologies detected:
-• Kafka
-• WebSocket
-• Redis
-
-System characteristics:
-• real-time data processing
-• high-performance backend systems
-```
-
-### 4. Team & Work Environment
-Describes how the team operates.
-Information extracted:
-
-- team structure
-- collaboration style
-- language expectations
-- working model
-
-Example output:
-```
-TEAM & WORK ENVIRONMENT
-
-Team characteristics:
-• cross-functional engineering team
-• collaboration with product teams
-
-Language expectations:
-• English-speaking environment
-
-Working style:
-• agile development
-• ownership of features from design to production
-```
-
-## Technology Stack
-Planned stack for the MVP:
-
-**Backend:**
-Java 21
-Spring Boot
-Spring AI
-
-**Frontend:**
-- Thymeleaf
-
-**Database:**
-- PostgreSQL
-
-**AI integration:**
-- Local LLM via Ollama
-- Prompt-based job description analysis
-
-**Architecture:**
-- Single monolithic backend
-- Simple two-page web interface
+   * Open a LinkedIn job page
+   * Activate the extension
+   * View analysis results
 
 ---
 
-## Future Vision
-After the initial release, JobLens may expand to include:
+## Configuration
 
-- resume-to-job matching
-- experience framing suggestions
-- resume tailoring guidance
-- browser extension for LinkedIn job pages
+The backend is configured via:
 
-The current focus is to **launch a working product quickly and iterate based on user feedback**.
+* `backend/src/main/resources/application.yml`
+
+Default setup assumes:
+
+* PostgreSQL running on `localhost:5432`
+* Ollama running on `http://localhost:11434`
+
+You can modify these values as needed.
 
 ---
 
-## Project Status
-Version 1 is currently under development.
+## Important Notes
+
+* This is a **local-first project** — no cloud services required
+* Your data stays on your machine
+* The Chrome extension depends on a **running local backend**
+* Not production-hardened for multi-user or public deployment
+
+---
+
+## Security
+
+* Do **not** expose your backend publicly without proper security measures
+* Do **not** commit real credentials to the repository
+* Review configuration before deploying outside localhost
+
+---
+
+## Contributing
+
+This is primarily a personal project.
+
+* Issues can be opened for discussion
+* Contributions are not actively managed but may be reviewed
+
+---
+
+## License
+
+This project is licensed under the **Apache License 2.0**.
+
+---
+
+## Future Improvements (Optional)
+
+* Improved UI/UX
+* Better model customization
+* Deployment options (Docker)
+* Chrome Web Store packaging
+
+---
+
+## Repository
+
+GitHub: https://github.com/ankitx-sharma/JobLens
+
+---
