@@ -1,9 +1,27 @@
 # JobLens
-JobLens is a tool that helps job seekers quickly understand what a job description is actually asking for.
+JobLens is a self-hosted tool that helps users analyze job descriptions and compare them against their profile or resume.
 
 Instead of reading long and often vague job descriptions, users can paste the text and receive a structured interpretation of the role, including the engineering focus, industry domain, system architecture, and team environment.
 
-The goal is to help candidates understand the true nature of a role within seconds.
+This repository is public for personal use, learning, and local experimentation.
+It is not currently offered as a hosted product or packaged Chrome Web Store release.
+
+## Status
+Feature-complete personal project.
+The repository includes:
+- Web app
+- Local backend
+- Chrome extension
+
+## How to use
+
+JobLens runs locally.
+
+To use it, you need:
+- the backend running locally
+- PostgreSQL running locally
+- Ollama running locally
+- the Chrome extension loaded manually in Chrome
 
 ## Problem
 Job descriptions are often:
